@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>甘特图 Maker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+
+    <!-- ── Chart preview (top) ── -->
+    <section class="preview-shell">
+      <div class="preview-header">
+        <div class="preview-title">
+          <input id="chartTitle" aria-label="图表标题" placeholder="图表标题">
+          <p class="muted">可横向滚动 · 双击条目快速编辑</p>
+        </div>
+        <div class="zoom-control">
+          <span class="zoom-label">缩放</span>
+          <input type="range" id="dayWidthSlider" min="18" max="60" step="2" value="34">
+          <span id="dayWidthValue">34px/天</span>
+        </div>
+        <button id="saveData" type="button">保存</button>
+        <button id="downloadImage" class="primary" type="button">下载 PNG</button>
+      </div>
+      <div id="chartScroll" class="chart-scroll">
+        <div id="chart" class="chart"></div>
+      </div>
+    </section>
+
+    <!-- ── Editor panel (bottom) ── -->
+    <aside class="panel">
+      <div class="panel-header">
+        <h1>甘特图 Maker</h1>
+        <p class="muted">编辑日期、分类和条目，上方实时预览。</p>
+      </div>
+
+      <div class="editor">
+        <section class="section">
+          <h2>时间范围</h2>
+          <div class="field-grid">
+            <label>开始日期<input id="rangeStart" type="date"></label>
+            <label>结束日期<input id="rangeEnd" type="date"></label>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="compact-row">
+            <h2>分区</h2>
+            <button id="addCategory" type="button">+ 添加</button>
+          </div>
+          <div id="categoryList" class="category-list"></div>
+        </section>
+
+        <section class="section">
+          <div class="compact-row">
+            <h2>条目</h2>
+            <button id="addItem" type="button">+ 添加</button>
+          </div>
+          <div id="itemList" class="item-list"></div>
+        </section>
+
+        <section class="section">
+          <h2>数据</h2>
+          <textarea id="dataBox" spellcheck="false"></textarea>
+          <div class="actions">
+            <button id="copyData" type="button">复制</button>
+            <button id="loadData" type="button">载入</button>
+            <button id="resetDemo" type="button">重置示例</button>
+          </div>
+        </section>
+      </div>
+    </aside>
+
+    <!-- ── Bar edit modal ── -->
+    <div id="barEditOverlay" class="bar-edit-overlay">
+      <div class="bar-edit-modal">
+        <h3>编辑条目</h3>
+        <div class="section">
+          <label>条目名称<input id="editBarName" type="text"></label>
+        </div>
+        <div class="section">
+          <label>小标签<input id="editBarTag" type="text"></label>
+        </div>
+        <div class="section">
+          <div class="field-grid">
+            <label>开始日期<input id="editBarStart" type="date"></label>
+            <label>结束日期<input id="editBarEnd" type="date"></label>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="cancelBarEdit" type="button">取消</button>
+          <button id="saveBarEdit" class="primary" type="button">保存</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
